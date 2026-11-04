@@ -5,16 +5,11 @@
 
 ## Installation
 
-1. Get the code:
-   - [Download ZIP](https://github.com/sousa-felipe/other-view-extension/archive/refs/heads/main.zip) and extract it, or
-   - clone the repository:
-     ```
-     git clone https://github.com/sousa-felipe/other-view-extension.git
-     ```
+1. Get the code: [Latest Release](https://github.com/sousa-felipe/other-view-extension/releases/latest)
 2. Open `chrome://extensions` (or `edge://extensions`, `brave://extensions`).
 3. Turn on **Developer mode**.
 4. Go to **Load unpacked**.
-5. Select the **`src` folder**.
+5. Select the **extracted folder** with `manifest.json`.
 6. Watch `youtube.com`.
 
 ## Release History
