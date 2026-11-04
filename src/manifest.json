@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Other View for YouTube",
+  "homepage_url": "https://github.com/sousa-felipe/other-view-extension",
+  "version": "1.1.0",
+  "description": "Watch video using Other view",
+  "icons": {
+    "16": "img/icons/icon16.png",
+    "48": "img/icons/icon48.png",
+    "128": "img/icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "css": ["content.css"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
