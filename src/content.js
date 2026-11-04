@@ -93,7 +93,14 @@
     const t = ensureTip();
     t.querySelector(".ov-label").textContent = tipLabel();
     const b = document.querySelector(".ov-button");
-    if (b) b.setAttribute("aria-label", tipLabel() + " (O)");
+    if (b) {
+      b.setAttribute("aria-label", tipLabel() + " (O)");
+      const active = root.classList.contains(CLS);
+      if (b.dataset.ovState !== String(active)) {
+        b.dataset.ovState = String(active);
+        b.innerHTML = active ? ICON_EXIT : ICON;
+      }
+    }
   }
 
   function showTip(btn) {
@@ -113,11 +120,17 @@
     if (tip) tip.style.display = "none";
   }
 
-  /* Icon */
+  /* Main icon */
   const ICON =
     '<svg viewBox="0 0 36 36" aria-hidden="true">' +
     '<path fill="none" stroke="#fff" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" ' +
     'd="M5 15v-3a4 4 0 0 1 4-4h4M31 15v-3a4 4 0 0 0-4-4h-4M5 21v3a4 4 0 0 0 4 4h4M31 21v3a4 4 0 0 1-4 4h-4"/></svg>';
+
+  /* Exit icon */
+  const ICON_EXIT =
+    '<svg viewBox="0 0 36 36" aria-hidden="true">' +
+    '<path fill="none" stroke="#fff" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" ' +
+    'd="M3 13h6a4 4 0 0 0 4-4V5M33 13h-6a4 4 0 0 1-4-4V5M3 23h6a4 4 0 0 1 4 4v4M33 23h-6a4 4 0 0 0-4 4v4"/></svg>';
 
   function addButton() {
     if (document.querySelector(".ov-button")) return;
@@ -166,6 +179,7 @@
     hideTip();
     setupHeader();
     addButton();
+    updateTooltip();
   });
 
   setupHeader();
