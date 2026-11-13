@@ -1,0 +1,164 @@
+/*
+    Other View - a browser extension that gives the YouTube player an "Other View" mode.
+    Other View is an independent project. Is not affiliated with, endorsed by, or sponsored by YouTube or Google.
+
+    Home: https://github.com/sousa-felipe/other-view-extension
+ 
+*/
+
+/* Never show a horizontal scrollbar */
+html.ov-active,
+html.ov-active body,
+html.ov-active ytd-app {
+  overflow-x: hidden !important;
+}
+
+/* Header hidden above the viewport, slides in on hover */
+html.ov-active #masthead-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 2030 !important;
+  transform: translateY(-101%);
+  transition: transform 0.2s ease;
+}
+html.ov-active #masthead-container.ov-show {
+  transform: translateY(0);
+}
+/* Recreate YouTube glass background for the header when slide over movie */
+html.ov-active #masthead-container {
+  background: linear-gradient(
+    to bottom,
+    rgba(28, 28, 28, 0.6) 0%,
+    rgba(28, 28, 28, 0.4) 100%
+  ) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+}
+html.ov-active #masthead-container ytd-masthead,
+html.ov-active #masthead-container #background {
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+/* Invisible hot zone at the top edge that reveals the header */
+#ov-hotzone {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  z-index: 2029;
+}
+html.ov-active #ov-hotzone { display: block; }
+
+/* Remove the space reserved for the header */
+html.ov-active ytd-page-manager,
+html.ov-active ytd-watch-flexy {
+  margin-top: 0 !important;
+}
+
+/* Full viewport of player area */
+html.ov-active ytd-watch-flexy #player-full-bleed-container,
+html.ov-active ytd-watch-flexy #full-bleed-container,
+html.ov-active ytd-watch-flexy #player-theater-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+  background: #000 !important;
+  box-sizing: border-box !important;
+}
+html.ov-active ytd-watch-flexy #player-container-outer,
+html.ov-active ytd-watch-flexy #player-container-inner,
+html.ov-active ytd-watch-flexy #player-container {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 0 !important;
+}
+html.ov-active ytd-watch-flexy #columns { margin-top: 0 !important; }
+
+/* Video fill */
+html.ov-active #movie_player {
+  width: 100% !important;
+  height: 100% !important;
+}
+html.ov-active #movie_player .html5-video-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+html.ov-active #movie_player video.html5-main-video {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  object-fit: contain !important;
+}
+html.ov-active #movie_player .ytp-chrome-bottom {
+  width: calc(100% - 24px) !important;
+  left: 12px !important;
+}
+html.ov-active #movie_player .ytp-gradient-bottom,
+html.ov-active #movie_player .ytp-gradient-top { width: 100% !important; }
+
+/* Player button */
+.ytp-button.ov-button {
+  width: 48px !important;
+  height: 100% !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: top !important;
+  opacity: 0.9;
+}
+.ytp-button.ov-button:hover { opacity: 1; }
+.ytp-button.ov-button svg {
+  width: 36px !important;
+  height: 36px !important;
+  display: block;
+}
+
+/* Recreate YouTube default tooltip */
+#ov-tooltip {
+  position: fixed;
+  z-index: 2147483000;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: rgba(28, 28, 28, 0.4);
+  color: #fff;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+#ov-tooltip .ov-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin-left: -4px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 400;
+  text-indent: 0;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+}
